@@ -43,6 +43,22 @@ public class FileOpenManager {
         return result;
     }
 
+    public List<String> getAllKey() {
+        Set<String> app = new HashSet<>();
+        app.addAll(appsList.keySet());
+        ArrayList<String> list = new ArrayList<>(app);
+        list.sort(Comparator.naturalOrder());
+        return list;
+    }
+
+    public List<String> getAllValue() {
+        Set<String> app = new HashSet<>();
+        app.addAll(appsList.values());
+        ArrayList<String> list = new ArrayList<>(app);
+        list.sort(Comparator.naturalOrder());
+        return list;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

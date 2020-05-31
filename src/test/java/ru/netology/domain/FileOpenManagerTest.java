@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class FileOpenManagerTest {
     private FileOpenManager openManager = new FileOpenManager();
@@ -23,7 +22,12 @@ class FileOpenManagerTest {
     }
 
     @Test
-    void test() {
+    void shouldGetApp() {
+        assertEquals("mpc-hc", openManager.getApp("mp4"));
+    }
+
+    @Test
+    void shouldRemoveApp() {
         HashMap<String, String> expected = new HashMap<>();
         expected.put("jpeg", "photoshop");
         expected.put("gif", "photoshop");
@@ -60,5 +64,21 @@ class FileOpenManagerTest {
     @Test
     void shouldRemoveNonExistKey() {
         assertEquals(null, openManager.clearApp("exe"));
+    }
+
+    @Test
+    void shouldGetAllKeysSorted() {
+        List<String> expected = new ArrayList<>();
+        expected.addAll(List.of("chm", "gif", "html", "jpeg", "mov", "mp4"));
+        List<String> actual = openManager.getAllKey();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void shouldGetAllValuesSorted() {
+        List<String> expected = new ArrayList<>();
+        expected.addAll(List.of("chrome", "mpc-hc", "photoshop"));
+        List<String> actual = openManager.getAllValue();
+        assertEquals(expected, actual);
     }
 }

@@ -10,8 +10,6 @@ import java.util.*;
 
 public class FileOpenManager {
     private Map<String, String> appsList = new HashMap<>();
-    private Map<String, String> app1 = new HashMap<K, V>("ext","app");
-
 
     public void save(String ext, String app) {
         appsList.put(ext.toLowerCase(), app.toLowerCase());

@@ -9,21 +9,23 @@ import java.util.*;
 @AllArgsConstructor
 
 public class FileOpenManager {
-    HashMap appsList = new HashMap<>();
+    private Map<String, String> appsList = new HashMap<>();
+    private Map<String, String> app1 = new HashMap<K, V>("ext","app");
+
 
     public void save(String ext, String app) {
         appsList.put(ext.toLowerCase(), app.toLowerCase());
     }
 
-    public HashMap<String, String> getAppsList() {
+    public Map<String, String> getAppsList() {
         return appsList;
     }
 
-    public Object getApp(String ext) {
+    public String getApp(String ext) {
         return appsList.get(ext.toLowerCase());
     }
 
-    public Object clearApp(String ext) {
+    public String clearApp(String ext) {
         return appsList.replace(ext.toLowerCase(), null);
     }
 
@@ -31,13 +33,11 @@ public class FileOpenManager {
         appsList.remove(ext);
     }
 
-    public List getRegisteredApp() {
-        Set<Map.Entry<String, String>> set;
-        List result = new ArrayList();
-        set = appsList.entrySet();
-        for (Map.Entry<String, String> temp : set) {
+    public Map<String,String> getRegisteredApp() {
+        Map<String,String> result = new HashMap<>();
+        for (Map.Entry<String,String> temp : appsList.entrySet()) {
             if (temp.getValue() != null) {
-                result.add(temp);
+                result.put(temp.getKey(), temp.getValue());
             }
         }
         return result;
@@ -59,16 +59,4 @@ public class FileOpenManager {
         return list;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FileOpenManager that = (FileOpenManager) o;
-        return Objects.equals(appsList, that.appsList);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(appsList);
-    }
 }

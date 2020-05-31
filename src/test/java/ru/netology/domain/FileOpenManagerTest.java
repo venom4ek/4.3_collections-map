@@ -43,9 +43,11 @@ class FileOpenManagerTest {
         openManager.clearApp("jpeg");
         openManager.clearApp("gif");
         openManager.clearApp("mp4");
-        List<String> expected = new ArrayList<>();
-        expected.addAll(List.of("mov=mpc-hc", "chm=chrome", "html=chrome"));
-        List<String> actual = openManager.getRegisteredApp();
+        Map<String, String> expected = new HashMap<>();
+        expected.put("mov", "mpc-hc");
+        expected.put("chm", "chrome");
+        expected.put("html", "chrome");
+        Map<String, String> actual = openManager.getRegisteredApp();
         assertEquals(expected, actual);
 
     }
